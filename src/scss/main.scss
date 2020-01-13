@@ -1,0 +1,19 @@
+@import 'resets';
+@import 'config';
+@import 'components';
+
+html {
+    overflow: hidden;
+
+    body {
+        overflow: hidden;
+        font-family: "Nunito Sans", Arial, "Helvetica Neue", Helvetica, sans-serif !important;
+        background: black;
+    }
+}
+
+h1 {
+    font-weight: weight(1000);
+    text-transform: uppercase;
+    color: white;
+}
