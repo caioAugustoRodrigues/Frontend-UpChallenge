@@ -1,0 +1,76 @@
+.game {
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: fit-content;
+    width: 75vh;
+    border: 10px solid rgba($color: $secondary-color, $alpha: .1);
+    border-radius: 5px;
+    
+    &__canvas {
+        height: 75vh;
+        width: 75vh;
+        background: url(../assets/sprites/CENARIO_anima.gif) no-repeat;
+        background-size: cover;
+    }
+
+    &__lane {
+        height: 100%;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: end;
+        & > * {
+            border: 1px solid red;
+        }
+
+    }
+
+    
+    &__controls {
+        align-self: start;
+        background: $secondary-color;
+        display: flex;
+        height: 75px;
+        grid-template-rows: 1fr;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+        font-size: 2rem;
+        font-weight: weight(bolder);
+        border-top: 10px solid rgba($color: $primary-color, $alpha: .1);
+
+        a {
+            display: flex;
+            flex: 1;
+            align-items: center;
+            justify-content: center;
+            color: $text-color;
+            @include transition-ease;
+
+            svg {
+                align-self: center;
+                justify-self: center;
+            }
+
+            &:active {
+                color: rgba($color: $primary-color, $alpha: .5);
+            }
+
+            &:hover {
+                color: rgba($color: $primary-color, $alpha: .5);
+            }
+        }
+    }
+}
+
+.carro {
+    display: block;
+    z-index: 100;
+    height: 1000px;
+    width: 1000px;
+    background: url('../assets/sprites/CARRO.png') no-repeat cover;
+    border: 1px solid red;
+}

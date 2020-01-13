@@ -1,3 +1,35 @@
-$primary-color: #ffff;
+$primary-color: black;
+$secondary-color: #3b86ff;
+$text-color: white;
+$font-weight:(
+    "regular": 400,
+    "medium": 500,
+    "bold": 700,
+    "bolder": 900,
+);
 
+@function weight($weightname){
+    @return map-get($font-weight, $weightname );
+};
 
+@mixin transition-ease {
+    transition: all 0.5s ease-in-out;
+}
+
+@mixin media-md {
+    @media screen and (min-width: 768px) {
+        @content; 
+    }
+}
+
+@mixin media-lg {
+    @media screen and (min-width: 1024px) {
+        @content; 
+    }
+}
+
+@mixin media-xl {
+    @media screen and (min-width: 1600px) {
+        @content; 
+    }
+}

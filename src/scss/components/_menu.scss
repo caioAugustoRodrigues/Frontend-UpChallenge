@@ -1,0 +1,31 @@
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    background-size: cover;
+    height: 1002px;
+    width: 1002px;
+    color: $text-color;
+    padding: 2rem;
+
+    &__title {
+        font-size: 4rem;
+        font-weight: weight(bolder);
+        align-self: flex-start;
+
+        span {
+            color: $secondary-color;
+        }
+    }
+
+    button {
+        background: none;
+        border: none;
+        font-size: 2rem;
+        font-weight: weight(bold);
+        color: $text-color;
+        justify-self: center;
+    }
+}

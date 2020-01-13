@@ -1,12 +1,18 @@
-import React from 'react';
+import * as React from 'react';
+import Game from './components/game';
 import './css/main.css';
 
-function App() {
-  return (
-    <main>
-      <h1>Hello world!</h1>
-    </main>
-  );
+class App extends React.Component {
+  state = { 
+    renderView: 0,
+   }
+  render() { 
+    return ( 
+      <main>
+        <Game />
+      </main>
+     );
+  }
 }
-
+ 
 export default App;
