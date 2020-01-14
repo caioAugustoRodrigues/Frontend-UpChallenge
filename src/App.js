@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 
 export default function App() {
   const [isPlaying, setPlaying] = useState(false);
 
   function handleChange() {
+    const btnPlay = document.getElementById('play-pause');
+
+    if (isPlaying) {
+      btnPlay.classList.add('fa-play');
+      btnPlay.classList.remove('fa-pause')
+    } else {
+      btnPlay.classList.add('fa-pause');
+      btnPlay.classList.remove('fa-play')
+    }
+
     setPlaying(!isPlaying);
     console.log(isPlaying);
   }
-
-  const play = 'fa-play';
-  const pause = 'fa-pause';
 
   return (
     <section className="game">
@@ -31,7 +38,9 @@ export default function App() {
           </button>
 
           <button href="2" className="icon" onClick={handleChange}>
-            <i className={`fas ${isPlaying ? pause : play}`}></i>
+            <span>
+              <i id="play-pause" className="fas fa-play"></i>
+            </span>
           </button>
 
           <button href="3" className="icon" >
