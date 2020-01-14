@@ -6,8 +6,13 @@ class App extends Component {
         this.state = { 
             isPlaying: false
         };
-    }
+    };
+
     render() { 
+        function handleChange() {
+            isPlaying: !this.state.isPlaying
+        }
+
         return ( 
             <section className="game">
                 <div className="game__canvas">
@@ -26,9 +31,7 @@ class App extends Component {
                         <i className="fas fa-chevron-left"></i>
                     </button>
 
-                    <button href="2" className="icon" onClick={() => this.setState(
-                        {isPlaying: !this.state.isPlaying}
-                    )}>
+                    <button href="2" className="icon" onClick={handleChange()}>
                         <i className={`fas ${this.state.isPlaying ? 'fa-pause' : 'fa-play' }`}></i>
                     </button>
 

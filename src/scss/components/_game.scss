@@ -17,8 +17,11 @@
         background-size: cover;
     }
 
-    .canvas-play {
-        background: url(../assets/sprites/bg.gif) no-repeat !important;
+    &__canvas--play {
+        background: url(../assets/sprites/bg.gif) no-repeat;
+        background-size: cover;
+        height: 75vh;
+        width: 75vh;
     }
 
     &__lane {
