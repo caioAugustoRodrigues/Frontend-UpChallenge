@@ -2,15 +2,7 @@ import React, { useState } from 'react';
 
 
 export default function App() {
-  const [isPlaying, setGameState] = useState(false);
-
-  function handleGameState(isPlaying) {
-    if (isPlaying) {
-      setGameState(useState(true))
-    } else {
-      setGameState(useState(false))
-    }
-  }
+  const [isPlaying, setPlaying] = useState(false);
 
   return (
     <section className="game">
@@ -30,12 +22,10 @@ export default function App() {
               <i className="fas fa-chevron-left"></i>
           </button>
 
-          <button href="2" className="icon" >
-            <i className={`fas ${isPlaying ? 'fa-pause' : 'fa-play' }`}
-            onClick={handleGameState}
-            ></i>
+          <button href="2" className="icon" onClick={() => isPlaying ? setPlaying(false) : setPlaying(true)}>
+            <i className={`fas ${isPlaying ? 'fa-pause' : 'fa-play' }`}></i>
           </button>
-          
+
           <button href="3" className="icon" >
               <i className="fas fa-chevron-right"></i>
           </button>
