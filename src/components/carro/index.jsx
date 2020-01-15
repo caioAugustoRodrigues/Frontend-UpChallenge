@@ -7,20 +7,22 @@ export default function Carro({ laneValue, isPlaying })  {
         if (isPlaying) {
             switch(posicao) {
                 case 0:
-                    return '__l';
+                    return 'carro__l';
                 case 1:
-                    return '';
+                    return 'carro';
                 case 2:
-                    return '__r';
-                case posicao >= 3:
-                    alert('Mais ou menos');
+                    return 'carro__r';
+                case 3:
+                    return 'explosion';
+                default:
+                    return 'explosion'
             }
-        }
 
-        return '';
+            return 'explosion';
+        }
     }
 
     return (
-        <div id="carro" className={`carro${handleLane(laneValue)} ${isPlaying ? 'tremer' : ''}`}></div>
+        <div id="carro" className={`${handleLane(laneValue)} ${isPlaying ? 'tremer' : ''}`}></div>
     )
 }

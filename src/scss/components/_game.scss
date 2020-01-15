@@ -15,6 +15,7 @@
         width: 75vh;
         background: url(../assets/sprites/bg.jpg) no-repeat;
         background-size: cover;
+        overflow: hidden;
     }
 
     &__canvas--play {
@@ -22,6 +23,7 @@
         background-size: cover;
         height: 75vh;
         width: 75vh;
+        overflow: hidden;
     }
 
     &__lane {
@@ -119,15 +121,31 @@
         justify-self: start;
         grid-area: l;
     }
+}
 
-    .blow {
-        display: block;
-        height: 150px;
-        width: 200px;
-        background: url('../assets/sprites/Explosion.png') no-repeat 0 0 !important;
-        background-size: cover;
-        justify-self: center;
-        grid-area: m;
+.explosion {
+    display: block;
+    height: 150px;
+    width: 160px;
+    background: url('../assets/sprites/Explosion.gif') no-repeat 0 0;
+    background-size: cover;
+    justify-self: center;
+    grid-area: m;
+
+    &__r {
+        @extend .explosion;
+        position: relative;
+        right: -100px;
+        justify-self: end;
+        grid-area: r;
+    }
+
+    &__l {
+        @extend .explosion;
+        position: relative;
+        left: -100px;
+        justify-self: start;
+        grid-area: l;
     }
 }
 

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Carro from './components/carro';
 
 export default function App() {
   const [isPlaying, setPlaying] = useState(false);
@@ -17,21 +16,52 @@ export default function App() {
     }
 
     setPlaying(!isPlaying);
-    console.log(isPlaying);
   }
 
+  function handleLane(posicao) {
+    if (isPlaying) {
+      switch(posicao) {
+        case 0:
+          return "carro__l";
+        case 1:
+          return "carro";
+        case 2:
+          return "carro__r";
+        case 3:
+            setPlaying(false);
+        case -1:
+          setPlaying(false);
+      }
+    } else {
+      switch(posicao) {
+        case 3:
+          return 'explosion__r';
+        case -1:
+          return 'explosion__l';
+          default:
+            return 'carro'
+      }
+    }
+  }
  
 //<span className={`carro__l ${isPlaying ? 'tremer' : ''}`}></span>
+//<Carro laneValue={lane} isPlaying={isPlaying}/>
   return (
     <section className="game">
       <div className={`game__canvas${isPlaying ? '--play' : ''}`}>
           <div className="game__lane">
-              <Carro laneValue={lane} isPlaying={isPlaying}/>
+            <div id="carro"
+            className={`${handleLane(lane)}
+            ${isPlaying ? 'tremer' : ''}`
+            }>
+            </div>
           </div>
       </div>
 
       <div className="game__controls">
-          <button href="1" className="icon" onClick={() => setLane(lane--)}>
+          <button href="1" className="icon" onClick={() => {
+            setLane(lane--)
+          }}>
               <i className="fas fa-chevron-left"></i>
           </button>
 
@@ -41,7 +71,9 @@ export default function App() {
             </span>
           </button>
 
-          <button href="3" className="icon" onClick={() => setLane(lane++)} >
+          <button href="3" className="icon" onClick={() => {
+            setLane(lane++)
+          }}>
               <i className="fas fa-chevron-right"></i>
           </button>
       </div>
