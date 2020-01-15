@@ -29,6 +29,10 @@
         width: 100%;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+        grid-template-areas: 
+        "l m r"
+        ;
+        justify-items: center;
         align-items: end;
     }
 
@@ -93,6 +97,8 @@
     width: 160px;
     background: url('../assets/sprites/b-b.png') no-repeat 0 0;
     background-size: cover;
+    justify-self: center;
+    grid-area: m;
     
     &__r {
         display: block;
@@ -100,6 +106,8 @@
         width: 200px;
         background: url('../assets/sprites/b-rq.png') no-repeat 0 0;
         background-size: cover;
+        justify-self: flex-end;
+        grid-area: r;
     }
     
     &__l {
@@ -108,9 +116,28 @@
         width: 200px;
         background: url('../assets/sprites/b-lq.png') no-repeat 0 0;
         background-size: cover;
+        justify-self: start;
+        grid-area: l;
+    }
+
+    .blow {
+        display: block;
+        height: 150px;
+        width: 200px;
+        background: url('../assets/sprites/Explosion.png') no-repeat 0 0 !important;
+        background-size: cover;
+        justify-self: center;
+        grid-area: m;
     }
 }
 
 .tremer {
     @include tremer;
+}
+
+.newBtn {
+    display: block;
+    padding: 1rem;
+    font-size: 2rem;
+    color: $primary-color;
 }

@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-
+import Carro from './components/carro';
 
 export default function App() {
   const [isPlaying, setPlaying] = useState(false);
-
-  const carro = document.getElementById('carro');
+  let [lane, setLane] = useState(1);
 
   function handleChange() {
     const btnPlay = document.getElementById('play-pause');
@@ -21,24 +20,18 @@ export default function App() {
     console.log(isPlaying);
   }
 
+ 
+//<span className={`carro__l ${isPlaying ? 'tremer' : ''}`}></span>
   return (
     <section className="game">
       <div className={`game__canvas${isPlaying ? '--play' : ''}`}>
           <div className="game__lane">
-              <div className="game__lane--1">
-                <span className={`carro__r ${isPlaying ? 'tremer' : ''}`}></span>
-              </div>
-              <div className="game__lane--2">
-                  <span className={`carro ${isPlaying ? 'tremer' : ''}`} id="carro"></span>
-              </div>
-              <div className="game__lane--3">
-                <span className={`carro__l ${isPlaying ? 'tremer' : ''}`}></span>
-              </div>
+              <Carro laneValue={lane} isPlaying={isPlaying}/>
           </div>
       </div>
 
       <div className="game__controls">
-          <button href="1" className="icon">
+          <button href="1" className="icon" onClick={() => setLane(lane--)}>
               <i className="fas fa-chevron-left"></i>
           </button>
 
@@ -48,7 +41,7 @@ export default function App() {
             </span>
           </button>
 
-          <button href="3" className="icon" >
+          <button href="3" className="icon" onClick={() => setLane(lane++)} >
               <i className="fas fa-chevron-right"></i>
           </button>
       </div>
