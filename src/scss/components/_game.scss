@@ -25,7 +25,7 @@
     }
 
     &__lane {
-        height: 100%;
+        height: 90%;
         width: 100%;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -88,8 +88,29 @@
 }
 
 .carro {
-    height: 200px;
-    width: 200px;
-    background: url('../assets/sprites/CARRO.png') no-repeat 0 0;
+    display: block;
+    height: 150px;
+    width: 160px;
+    background: url('../assets/sprites/b-b.png') no-repeat 0 0;
     background-size: cover;
+    
+    &__r {
+        display: block;
+        height: 150px;
+        width: 200px;
+        background: url('../assets/sprites/b-rq.png') no-repeat 0 0;
+        background-size: cover;
+    }
+    
+    &__l {
+        display: block;
+        height: 150px;
+        width: 200px;
+        background: url('../assets/sprites/b-lq.png') no-repeat 0 0;
+        background-size: cover;
+    }
+}
+
+.tremer {
+    @include tremer;
 }

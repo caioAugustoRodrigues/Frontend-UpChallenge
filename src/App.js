@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 export default function App() {
   const [isPlaying, setPlaying] = useState(false);
 
+  const carro = document.getElementById('carro');
+
   function handleChange() {
     const btnPlay = document.getElementById('play-pause');
 
@@ -23,12 +25,15 @@ export default function App() {
     <section className="game">
       <div className={`game__canvas${isPlaying ? '--play' : ''}`}>
           <div className="game__lane">
-              <div className="game__lane--1"></div>
-              <div className="game__lane--2">
-                  <div className="carro" id="carro">
-                  </div>
+              <div className="game__lane--1">
+                <span className={`carro__r ${isPlaying ? 'tremer' : ''}`}></span>
               </div>
-              <div className="game__lane--3"></div>
+              <div className="game__lane--2">
+                  <span className={`carro ${isPlaying ? 'tremer' : ''}`} id="carro"></span>
+              </div>
+              <div className="game__lane--3">
+                <span className={`carro__l ${isPlaying ? 'tremer' : ''}`}></span>
+              </div>
           </div>
       </div>
 

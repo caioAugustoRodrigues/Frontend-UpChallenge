@@ -8,9 +8,17 @@ $font-weight:(
     "bolder": 900,
 );
 
-@function weight($weightname){
+@function weight($weightname) {
     @return map-get($font-weight, $weightname );
 };
+
+@mixin tremer {
+    animation: mover 110ms infinite  alternate;
+    @keyframes mover {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-2px); }
+    }
+}
 
 @mixin transition-ease {
     transition: all 0.5s ease-in-out;
