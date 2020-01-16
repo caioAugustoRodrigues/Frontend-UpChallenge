@@ -54,18 +54,22 @@ export default function App() {
   let newLane = lane;
 
   const lanes = {
-    laneLeft: () => {
-      newLane = newLane - 1;
-      setLane(newLane)
+    laneLeft: function() {
+      if (isPlaying) {
+        newLane = newLane - 1;
+        setLane(newLane);
+        console.log(lane)
+      }
     },
-    laneRight: () => {
-      newLane = newLane + 1;
-      setLane(newLane);
+    laneRight: function() {
+      if (isPlaying) {
+        newLane = newLane + 1;
+        setLane(newLane);
+        console.log(lane)
+      }
     }
   }
- 
-//<span className={`carro__l ${isPlaying ? 'tremer' : ''}`}></span>
-//<Carro laneValue={lane} isPlaying={isPlaying}/>
+
   return (
     <section className="game">
       <div className={`game__canvas${isPlaying ? '--play' : ''}`}>
@@ -79,7 +83,7 @@ export default function App() {
       </div>
 
       <div className="game__controls">
-          <button className="icon" onClick={isPlaying ? lanes.laneLeft : ''}>
+          <button className="icon" onClick={lanes.laneLeft}> 
               <i className="fas fa-chevron-left"></i>
           </button>
 
@@ -89,7 +93,7 @@ export default function App() {
             </span>
           </button>
 
-          <button className="icon" onClick={isPlaying ? lanes.laneRight : ''}>
+          <button className="icon" onClick={lanes.laneRight}>
               <i className="fas fa-chevron-right"></i>
           </button>
       </div>
