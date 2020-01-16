@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function App() {
   const [isPlaying, setPlaying] = useState(false);
-  let [lane, setLane] = useState(1);
+  const [lane, setLane] = useState(1);
 
   function handleChange() {
     const btnPlay = document.getElementById('play-pause');
@@ -10,16 +10,23 @@ export default function App() {
     if (isPlaying) {
       btnPlay.classList.add('fa-play');
       btnPlay.classList.remove('fa-pause')
+      setPlaying(false);
     } else {
       btnPlay.classList.add('fa-pause');
-      btnPlay.classList.remove('fa-play')
+      btnPlay.classList.remove('fa-play');
+      setPlaying(true);
     }
+  }
 
-    setPlaying(!isPlaying);
+  function resetGame() {
+    window.setTimeout(() => {
+      setLane(1);
+      handleChange();
+      setPlaying(false)
+    }, 3000)
   }
 
   function handleLane(posicao) {
-    if (isPlaying) {
       switch(posicao) {
         case 0:
           return "carro__l";
@@ -28,19 +35,32 @@ export default function App() {
         case 2:
           return "carro__r";
         case 3:
-            setPlaying(false);
-        case -1:
-          setPlaying(false);
-      }
-    } else {
-      switch(posicao) {
-        case 3:
+          if(isPlaying) {
+            setPlaying(!isPlaying);
+          }
+          resetGame();
           return 'explosion__r';
-        case -1:
+          case -1:
+            if(isPlaying) {
+              setPlaying(!isPlaying);
+          }
+          resetGame();
           return 'explosion__l';
-          default:
+        default:
             return 'carro'
       }
+  }
+
+  let newLane = lane;
+
+  const lanes = {
+    laneLeft: () => {
+      newLane = newLane - 1;
+      setLane(newLane)
+    },
+    laneRight: () => {
+      newLane = newLane + 1;
+      setLane(newLane);
     }
   }
  
@@ -59,21 +79,17 @@ export default function App() {
       </div>
 
       <div className="game__controls">
-          <button href="1" className="icon" onClick={() => {
-            setLane(lane--)
-          }}>
+          <button className="icon" onClick={isPlaying ? lanes.laneLeft : ''}>
               <i className="fas fa-chevron-left"></i>
           </button>
 
-          <button href="2" className="icon" onClick={handleChange}>
+          <button className="icon" onClick={handleChange}>
             <span>
               <i id="play-pause" className="fas fa-play"></i>
             </span>
           </button>
 
-          <button href="3" className="icon" onClick={() => {
-            setLane(lane++)
-          }}>
+          <button className="icon" onClick={isPlaying ? lanes.laneRight : ''}>
               <i className="fas fa-chevron-right"></i>
           </button>
       </div>
