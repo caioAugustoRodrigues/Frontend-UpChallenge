@@ -1,44 +1,124 @@
-import * as React from 'react';
-import '../../css/main.css';
+import React, { useState } from 'react';
+import Carro from '../carro'
+import HudUpper from '../hud';
 
-import playButton from './button/index.jsx';
+export default function Game() {
+  const [isPlaying, setPlaying] = useState(false);
+  const [lane, setLane] = useState(1);
 
-class Game extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            score: 0,
-            isPlaying: false,
-            isDriving: false
+  function handleLane(posicao) {
+    switch(posicao) {
+      case 0:
+        return "carro__l";
+      case 1:
+        return "carro";
+      case 2:
+        return "carro__r";
+      case 3:
+        if(isPlaying) {
+          setPlaying(!isPlaying);
         }
-    }
-    
-    render() { 
-        return ( 
-            <div className="game">
-                <div className="game__canvas">
-                    <div className="game__lane">
-                        <div className="game__lane--1"></div>
-                        <div className="game__lane--2">
-                            <div className="carro" id="carro">
-                            </div>
-                        </div>
-                        <div className="game__lane--3"></div>
-                    </div>
-                </div>
-                <div className="game__controls">
-                    <a href="1" className="icon">
-                        <i className="fas fa-chevron-left"></i>
-                    </a>
-                    <playButton />
-                    <a href="3" className="icon">
-                        <i className="fas fa-chevron-right"></i>
-                    </a>
-                    
-                </div>
-            </div>
-         );
+        resetGame();
+        return 'explosion__r';
+        case -1:
+          if(isPlaying) {
+            setPlaying(!isPlaying);
+        }
+        resetGame();
+        return 'explosion__l';
+      default:
+          return 'carro'
     }
 }
+
+  function handleChange() {
+    const btnPlay = document.getElementById('play-pause');
+    if (isPlaying) {
+      btnPlay.classList.add('fa-play');
+      btnPlay.classList.remove('fa-pause')
+      setPlaying(!isPlaying);
+    } else if (!isPlaying) {
+      btnPlay.classList.add('fa-pause');
+      btnPlay.classList.remove('fa-play');
+      setPlaying(!isPlaying);
+    }
+  }
+  
+  function handleBtnCrash() {
+    const btnPlay = document.getElementById('play-pause');
+    if (isPlaying) {
+      btnPlay.classList.remove('fa-play');
+      btnPlay.classList.add('fa-pause');
+      handleChange();
+    }
+    return
+  }
+
+  function resetGame() {
+    window.setTimeout(() => {
+      setLane(1);
+      setPlaying(false);
+      handleBtnCrash();
+    }, 3000)
+  }
+
+  let newLane = lane;
+
+  const lanes = {
+    laneLeft: function() {
+      if (isPlaying) {
+        newLane = newLane - 1;
+        setLane(newLane);
+      }
+    },
+    laneRight: function() {
+      if (isPlaying) {
+        newLane = newLane + 1;
+        setLane(newLane);
+      }
+    }
+  }
  
-export default Game;
+//<span className={`carro__l ${isPlaying ? 'tremer' : ''}`}></span>
+//<Carro laneValue={lane} isPlaying={isPlaying}/>
+
+
+//setas pra esquerda e direita não tem efeito quando função é passada via onclick, talvez funcione em função separada??? já tentei com objeto
+
+  return (
+    <section className="game">
+      <div className={`game__canvas${isPlaying ? '--play' : ''}`}>
+          <div className="hud">
+            <HudUpper 
+            isPlaying={isPlaying}
+            setPlaying={setPlaying}
+            handleChange={handleBtnCrash}
+            />
+          </div>
+          <div className="game__lane">
+            <Carro 
+              lane={lane}
+              handleLane={handleLane}
+              isPlaying={isPlaying}
+            />
+          </div>
+      </div>
+
+      <div className="game__controls">
+          <button className="icon" onClick={lanes.laneLeft}> 
+              <i className="fas fa-chevron-left"></i>
+          </button>
+
+          <button className="icon" onClick={handleChange}>
+            <span>
+              <i id="play-pause" className="fas fa-play"></i>
+            </span>
+          </button>
+
+          <button className="icon" onClick={lanes.laneRight}>
+              <i className="fas fa-chevron-right"></i>
+          </button>
+      </div>
+  </section>
+  )
+}

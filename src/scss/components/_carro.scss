@@ -1,0 +1,61 @@
+.carro {
+    display: block;
+    height: 150px;
+    width: 160px;
+    background: url('../assets/sprites/b-b.png') no-repeat 0 0;
+    background-size: cover;
+    justify-self: center;
+    grid-area: m;
+    
+    &__r {
+        display: block;
+        height: 150px;
+        width: 200px;
+        background: url('../assets/sprites/b-rq.png') no-repeat 0 0;
+        background-size: cover;
+        justify-self: flex-end;
+        grid-area: r;
+    }
+    
+    &__l {
+        display: block;
+        height: 150px;
+        width: 200px;
+        position: relative;
+        left: -1rem;
+        background: url('../assets/sprites/b-lq.png') no-repeat 0 0;
+        background-size: cover;
+        justify-self: start;
+        grid-area: l;
+    }
+}
+
+.explosion {
+    display: block;
+    height: 150px;
+    width: 160px;
+    background: url('../assets/sprites/Explosion.gif') no-repeat 0 0;
+    background-size: cover;
+    justify-self: center;
+    grid-area: m;
+
+    &__r {
+        @extend .explosion;
+        position: relative;
+        right: -5rem;
+        justify-self: end;
+        grid-area: r;
+    }
+
+    &__l {
+        @extend .explosion;
+        position: relative;
+        left: -5rem;
+        justify-self: start;
+        grid-area: l;
+    }
+}
+
+.tremer {
+    @include tremer;
+}

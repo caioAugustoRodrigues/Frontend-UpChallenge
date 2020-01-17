@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function Menu() {
+function Menu(isPlaying) {
+    const [willPlay, setPlay] = useState(false);
+
+    function handlePlay() {
+        setPlay(!willPlay);
+        console.log(willPlay)
+    }
+
     return (
         <section className="menu">
             <div className="menu__title">
                 <h1>Up<span>Challenge</span>!</h1>
             </div>
-            <button id="menu">Go!</button>
+            <button id="menu" onClick={handlePlay}>Go!</button>
         </section>
     )
 }
