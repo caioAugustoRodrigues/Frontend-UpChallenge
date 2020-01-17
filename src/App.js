@@ -6,7 +6,7 @@ export default function App() {
   let willPlay = Menu.willPlay;
   const [isPlaying, setPlaying] = React.useState(willPlay);
 
-  function handleContent() {
+  function handleContent() { 
     if (willPlay) {
 
       <Game 
@@ -18,6 +18,7 @@ export default function App() {
       <Menu isPlaying={Game.isPlaying} ref={willPlay}/>}
     }
   }
+  
 
   return (
     <> 

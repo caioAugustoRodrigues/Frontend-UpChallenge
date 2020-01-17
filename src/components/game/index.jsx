@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Carro from '../carro'
 import HudUpper from '../hud';
 
-export default function Game() {
-  const [isPlaying, setPlaying] = useState(false);
+export default function Game(willPlay) {
+  const [isPlaying, setPlaying] = useState(willPlay);
   const [lane, setLane] = useState(1);
 
   function handleLane(posicao) {
