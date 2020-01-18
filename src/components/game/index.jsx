@@ -6,6 +6,17 @@ export default function Game() {
   const [isPlaying, setPlaying] = useState(false);
   const [lane, setLane] = useState(1);
 
+  const handleKeyPress = {
+    leftKey: 27,
+    left: (event) => {
+      if (event.key === handleKeyPress.leftKey) {
+        console.log('left');
+      } else {
+        console.log('none')
+      }
+    }
+  }
+
   function handleLane(posicao) {
     switch(posicao) {
       case 0:
@@ -78,9 +89,24 @@ export default function Game() {
       }
     }
   }
- 
+
+  function getLaneByKeyPress(event) {
+    let key = event.key;
+
+    if (key === 'ArrowLeft' && isPlaying) {
+      key = event.key;
+      lanes.laneLeft();
+    } else if (key === 'ArrowRight' && isPlaying) {
+      key = event.key;
+      lanes.laneRight();
+    } else if (key === 'Escape') {
+      setPlaying(!isPlaying);
+      handleChange();
+    }
+  }
+  
   return (
-    <section className="game">
+    <section className="game" onKeyDown={getLaneByKeyPress}>
       <div className={`game__canvas${isPlaying ? '--play' : ''}`}>
           <div className="hud">
             <HudUpper 
@@ -99,7 +125,7 @@ export default function Game() {
       </div>
 
       <div className="game__controls">
-          <button className="icon" onClick={lanes.laneLeft}> 
+          <button className="icon" onClick={lanes.laneLeft} > 
               <i className="fas fa-chevron-left"></i>
           </button>
 

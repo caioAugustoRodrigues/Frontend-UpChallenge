@@ -5,15 +5,14 @@
     background: rgb(2,0,36);
     background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
     background-size: cover;
-    height: 1002px;
-    width: 1002px;
+    height: 100vh;
+    width: 100vw;
     color: $text-color;
     padding: 2rem;
     grid-template-areas: 
     ". upnid ."
     ". title ."
     ". name ."
-    ". starts ."
     ". . ."
     ;
 
@@ -23,12 +22,6 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
-
-        animation: top 2s alternate;
-        @keyframes top {
-            0% { transform: translateY(-100vh); }
-            100% { transform: translateY(0); }
-        }
 
         p {
             margin-left: 25%;
@@ -42,42 +35,74 @@
             height: 60px;
             background: url('../assets/upnid.svg') no-repeat 0 0;
             background-size: cover;
+
+            animation: upnid 2s alternate;
+                @keyframes upnid {
+                0% { transform: scale(.9); }
+                100% { transform: scale(1); }
+            }
         }
     }
+
+    
 
     &__title {
         grid-area: title;
         font-size: 4rem;
         font-weight: weight(bolder);
         align-self: flex-start;
+        justify-self: center;
         transition: all 10s ease-in-out;
+
+        animation: str 2s alternate;
+        @keyframes str {
+            0% { font-size: 3.7rem; }
+            50% { font-size: 3.7rem; }
+            100% { font-size: 4rem; }
+        }
 
         span {
             color: $secondary-color;
         }
     }
 
-    .title-active {
-        animation: in 5s alternate;
-        @keyframes in {
-            0% { transform: translateY(-100vh); }
-            100% { transform: translateY(0); }
+    &__name {
+        grid-area: name;
+        height: 25vh;
+        justify-self: center;
+        display: flex;
+        flex-flow: column;
+        align-content: center;
+        align-items: center;
+        justify-content: space-between;
+        text-align: center;
+
+        h2 {
+            font-size: 1.15rem;
+            font-weight: weight(medium);
+            margin-bottom: 0.5rem;
+        }
+
+        input {
+            border-radius: 5px;
+            background: none;
+            padding: 8px;
+            border: 2px solid rgba($color: $text-color, $alpha: .5);
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: weight(bolder);
+            color: $text-color;
+            font-size: 2rem;
+
         }
     }
 
     .start {
-        grid-area: starts;
         background: none;
         border: none;
         font-size: 2rem;
         font-weight: weight(bold);
         color: $text-color;
         justify-self: center;
-
-        animation: str 2s alternate;
-        @keyframes str {
-            0% { transform: translateY(100vh); }
-            100% { transform: translateY(0); }
-        }
     }
 }
