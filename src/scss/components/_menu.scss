@@ -1,5 +1,5 @@
 .menu {
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
     background: rgb(2,0,36);
@@ -9,23 +9,75 @@
     width: 1002px;
     color: $text-color;
     padding: 2rem;
+    grid-template-areas: 
+    ". upnid ."
+    ". title ."
+    ". name ."
+    ". starts ."
+    ". . ."
+    ;
+
+    &__upper {
+        grid-area: upnid;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        animation: top 2s alternate;
+        @keyframes top {
+            0% { transform: translateY(-100vh); }
+            100% { transform: translateY(0); }
+        }
+
+        p {
+            margin-left: 25%;
+            margin-top: 1.15rem;
+        }
+        .upnid {
+            justify-self: center;
+            display: block;
+            height: auto;
+            width: 200px;
+            height: 60px;
+            background: url('../assets/upnid.svg') no-repeat 0 0;
+            background-size: cover;
+        }
+    }
 
     &__title {
+        grid-area: title;
         font-size: 4rem;
         font-weight: weight(bolder);
         align-self: flex-start;
+        transition: all 10s ease-in-out;
 
         span {
             color: $secondary-color;
         }
     }
 
-    button {
+    .title-active {
+        animation: in 5s alternate;
+        @keyframes in {
+            0% { transform: translateY(-100vh); }
+            100% { transform: translateY(0); }
+        }
+    }
+
+    .start {
+        grid-area: starts;
         background: none;
         border: none;
         font-size: 2rem;
         font-weight: weight(bold);
         color: $text-color;
         justify-self: center;
+
+        animation: str 2s alternate;
+        @keyframes str {
+            0% { transform: translateY(100vh); }
+            100% { transform: translateY(0); }
+        }
     }
 }

@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
+import React, {  useState } from "react";
 
 export default function HudUpper({ isPlaying, setPlaying, handleChange }) {
   const [countDown, setCoundDown] = useState(30); 
   const [isCounting, setIsCounting] = useState(false);
-  const [secondsLeft, setSeconds] = useState(0);
 
   function handleTimer() {
     if (!isCounting && !isPlaying) {
@@ -23,7 +21,6 @@ export default function HudUpper({ isPlaying, setPlaying, handleChange }) {
               handleChange();
               setIsCounting(false);
               setCoundDown(30);
-              handleSeconds();
             }, 1000);
           }, 1000);
         }, 1000);
@@ -31,20 +28,7 @@ export default function HudUpper({ isPlaying, setPlaying, handleChange }) {
     } 
   }
 
-  let time = 50;
-  function timerTest() {
-    setTimeout(() => {
-      console.log('times up pall')
-    }, time);
-  }
 
-  function handleSeconds() {
-    while (countDown > 0) {
-      setCoundDown(countDown--);
-      console.log(time)
-    }
-    console.log(countDown)
-  }
 
   function hideBtnGo() {
     if (isPlaying || isCounting) {

@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-function Menu(isPlaying) {
-    const [willPlay, setPlay] = useState(false);
+function Menu({ setPlay, willPlay }) {
 
-    function handlePlay() {
-        setPlay(!willPlay);
-        console.log(willPlay)
+    const handlePlay = {
+        startPlay: () => {
+            setPlay(true);
+        }
     }
 
     return (
         <section className="menu">
-            <div className="menu__title">
+            <div className="menu__upper">
+                <span className="upnid"></span>
+                <p>Apresenta:</p>
+            </div>
+
+            <div className={`menu__title ${willPlay ? '' : 'title-active'}`}>
                 <h1>Up<span>Challenge</span>!</h1>
             </div>
-            <button id="menu" onClick={handlePlay}>Go!</button>
+            
+            <button className={`start ${willPlay ? '' : 'start-active'}`} onClick={handlePlay.startPlay}>Press Start</button>
         </section>
     )
 }

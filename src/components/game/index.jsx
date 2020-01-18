@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Carro from '../carro'
 import HudUpper from '../hud';
 
-export default function Game(willPlay) {
-  const [isPlaying, setPlaying] = useState(willPlay);
+export default function Game() {
+  const [isPlaying, setPlaying] = useState(false);
   const [lane, setLane] = useState(1);
 
   function handleLane(posicao) {
@@ -79,12 +79,6 @@ export default function Game(willPlay) {
     }
   }
  
-//<span className={`carro__l ${isPlaying ? 'tremer' : ''}`}></span>
-//<Carro laneValue={lane} isPlaying={isPlaying}/>
-
-
-//setas pra esquerda e direita não tem efeito quando função é passada via onclick, talvez funcione em função separada??? já tentei com objeto
-
   return (
     <section className="game">
       <div className={`game__canvas${isPlaying ? '--play' : ''}`}>

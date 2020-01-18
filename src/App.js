@@ -3,26 +3,32 @@ import Game from './components/game';
 import Menu from './components/menu';
 
 export default function App() {
-  let willPlay = Menu.willPlay;
-  const [isPlaying, setPlaying] = React.useState(willPlay);
+  const [willPlay, setPlay] = React.useState(false);
 
-  function handleContent() { 
-    if (willPlay) {
+  function returnGame() {
+    return (
+      <>
+      <Game /> 
+      </>
+    )
+  }
+  
+  function returnMenu() {
+    return (
+      <Menu setPlay={setPlay} willPlay={willPlay}  />
+    )
+  }
 
-      <Game 
-        willPlay={Menu.willPlay} 
-        isPlaying={isPlaying} 
-        ref={isPlaying}
-      /> 
+  function HandleContent() {
+    if (!willPlay) {
+     return returnMenu();
     } else {
-      <Menu isPlaying={Game.isPlaying} ref={willPlay}/>}
+      return returnGame()
     }
   }
   
 
   return (
-    <> 
-    {handleContent}
-    </>
+    <HandleContent />
   )
 }
