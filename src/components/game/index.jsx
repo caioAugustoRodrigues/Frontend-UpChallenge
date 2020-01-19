@@ -1,11 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Carro from '../carro'
 import HudUpper from '../hud';
 
-export default function Game({ willPlay }) {
+export default function Game({ willPlay, name }) {
 	const [isPlaying, setPlaying] = useState(false);
 	const [lane, setLane] = useState(1);
 	const [play, setPlay] = useState(willPlay);
+
+	function UserName() {
+		return name
+	}
+	
+	const handleChange = () => {
+		const btnPlay = document.getElementById('play-pause');
+	
+		if (isPlaying) {
+			btnPlay.classList.add('fa-play');
+			btnPlay.classList.remove('fa-pause')
+			setPlaying(!isPlaying);
+		} else if (!isPlaying) {
+			btnPlay.classList.add('fa-pause');
+			btnPlay.classList.remove('fa-play');
+			setPlaying(!isPlaying);
+		}
+	}
+
+	const lanes = {
+		laneLeft: function() {
+			if (isPlaying) {
+				newLane = newLane - 1;
+				setLane(newLane);
+			}
+		},
+		laneRight: function() {
+			if (isPlaying) {
+				newLane = newLane + 1;
+				setLane(newLane);
+			}
+		}
+	}
+	
+	let newLane = lane;
 
 	function handleLane(posicao) {
 		switch(posicao) {
@@ -39,19 +74,6 @@ export default function Game({ willPlay }) {
 		}
 	}
 
-	const handleChange = () => {
-		const btnPlay = document.getElementById('play-pause');
-
-		if (isPlaying) {
-			btnPlay.classList.add('fa-play');
-			btnPlay.classList.remove('fa-pause')
-			setPlaying(!isPlaying);
-		} else if (!isPlaying) {
-			btnPlay.classList.add('fa-pause');
-			btnPlay.classList.remove('fa-play');
-			setPlaying(!isPlaying);
-		}
-	}
 
 	function handleBtnCrash() {
 		const btnPlay = document.getElementById('play-pause');
@@ -70,23 +92,6 @@ export default function Game({ willPlay }) {
 			setPlaying(false);
 			handleBtnCrash();
 		}, 3000)
-	}
-
-	let newLane = lane;
-
-	const lanes = {
-		laneLeft: function() {
-			if (isPlaying) {
-				newLane = newLane - 1;
-				setLane(newLane);
-			}
-		},
-		laneRight: function() {
-			if (isPlaying) {
-				newLane = newLane + 1;
-				setLane(newLane);
-			}
-		}
 	}
 
 	function getLaneByKeyPress(event) {
@@ -113,15 +118,14 @@ export default function Game({ willPlay }) {
 			{handleKeyDown}
 			<section className="game">
 				<div className={`game__canvas${isPlaying ? '--play' : ''}`}>
-					<div className="hud">
-						<HudUpper 
-						isPlaying={isPlaying}
-						setPlaying={setPlaying}
-						handleChange={handleBtnCrash}
-						start={play}
-						setStart={setPlay}
-						/>
-					</div>
+					<HudUpper 
+					isPlaying={isPlaying}
+					setPlaying={setPlaying}
+					handleChange={handleBtnCrash}
+					start={play}
+					setStart={setPlay}
+					name={name}
+					/>
 
 					<div className="game__lane">
 						<Carro 

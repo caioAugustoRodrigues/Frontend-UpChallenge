@@ -1,28 +1,30 @@
 .hud {
+    flex: 1;
     color: $primary-color;
     font-size: 2rem;
+    padding: 1rem;
     height: 10vh;
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-between;
     width: 100%;
+    justify-self: center;
     position: relative;
     color: $text-color;
     font-weight: weight(bold);
-    justify-content: center;
-    align-items: flex-start;
-    text-align: center;
-    
-    &__start {
-        padding: 1rem;
-    }
 
     &__count {
-        padding: 1rem;
         justify-self: center;
     }
 
     .hidden {
-        display: none;
+        visibility: hidden;
         background: none !important;
+    }
+
+    &__name {
+        font-size: 2rem;
+        margin-right: 5%;
+        font-weight: weight(bold);
+        text-transform: uppercase;
     }
 }

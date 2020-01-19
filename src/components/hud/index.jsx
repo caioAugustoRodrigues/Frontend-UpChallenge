@@ -1,8 +1,12 @@
 import React, {  useState, useEffect } from "react";
 
-export default function HudUpper({ isPlaying, setPlaying, handleChange, start, setStart }) {
-  const [countDown, setCountdown] = useState(); 
-  const [startCount, setStartCount] = useState();
+export default function HudUpper({ isPlaying, setPlaying, handleChange, start, setStart, name }) {
+    const [countDown, setCountdown] = useState(); 
+    const [startCount, setStartCount] = useState();
+    const userName = name;
+    
+    let countdown;
+    let count = countDown;
 
     useEffect(() => {
         if (start === true) {
@@ -35,8 +39,6 @@ export default function HudUpper({ isPlaying, setPlaying, handleChange, start, s
         } 
     }
 
-    let countdown;
-    let count = countDown;
     function timer(seconds) {
         // clear any existing timers
         clearInterval(countdown);
@@ -92,15 +94,26 @@ export default function HudUpper({ isPlaying, setPlaying, handleChange, start, s
         }
     }
 
+    function Name(userName) {
+        return (
+            {userName}
+        )
+    }
+
     return (
         <>
             <div className="hud">
-            <h1 className={`hud__start ${startCount < 0 ? 'hidden' : ''}`}>
-                <StartCounter />
-            </h1>
-            <h1 className={`hud__count ${startCount > 0 ? 'hidden' : ''}`}>
-                {count}
-            </h1>
+                <h1 className={`hud__start ${startCount < 0 ? 'hidden' : ''}`}>
+                    <StartCounter />
+                </h1>
+
+                <h1 className={`hud__count ${startCount > 0 ? 'hidden' : ''}`}>
+                    {count}
+                </h1>
+
+                <h1 className="hud__name">
+                    {userName}
+                </h1>
             </div>
         </>
     )

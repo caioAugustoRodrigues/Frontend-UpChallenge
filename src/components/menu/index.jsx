@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
 
-function Menu({ setPlay, willPlay }) {
-    const [name, handleName] = useState(0);
+function Menu({ setPlay, setName }) {
+    const [name, setNaming] = useState("")
 
-    const handlePlay = {
-        startPlay: () => {
-            setPlay(true);
-        }
-    }
-
-    function handleNaming() {
-        let name = document.getElementById('player-name');
-
-        handleName(name);
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        setName(name);
+        setPlay(true);
     }
 
     return (
@@ -27,13 +21,20 @@ function Menu({ setPlay, willPlay }) {
                 <h1>Up<span>Challenge</span>!</h1>
             </div>
             
-            <form className="menu__name" onSubmit={handleNaming}>
+            <form className="menu__name" onSubmit={handleSubmit}>
                 <label htmlFor="name">
                     <h2>Name</h2>
-                    <input id="player-name" type="text" minLength="4" maxLength="4" pattern="[A-Za-z0-9]" />
+                    <input 
+                        id="player-name" 
+                        type="text" 
+                        minLength="4" 
+                        maxLength="4"
+                        value={name} 
+                        onChange={e => setNaming(e.target.value)}
+                    />
                 </label>
 
-                <button className="start" onClick={handlePlay.startPlay}>Press Start</button>
+                <button className="start">Press Start</button>
             </form>
         </section>
         </>

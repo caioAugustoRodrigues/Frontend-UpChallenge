@@ -3,36 +3,46 @@ import Game from './components/game';
 import Menu from './components/menu';
 
 export default function App() {
-  const [willPlay, setPlay] = React.useState(false);
+const [willPlay, setPlay] = React.useState(false);
+const [name, setName] = React.useState("");
 
-  function returnGame() {
-    return (
-      <>
-      <Game willPlay={willPlay}/> 
-      </>
-    )
-  }
-  
-  function returnMenu() {
-    return (
-      <Menu setPlay={setPlay} willPlay={willPlay}  />
-    )
-  }
-
-  function HandleContent() {
-    if (!willPlay) {
-     return returnMenu();
-    } else {
-      return returnGame()
+    function returnGame() {
+        return (
+        <>
+            <Game 
+                willPlay={willPlay}
+                name={name}
+            /> 
+        </>
+        )
     }
-  }
+    
+    function returnMenu() {
+        return (
+        <> 
+            <Menu 
+                setPlay={setPlay} 
+                willPlay={willPlay}
+                setName={setName}
+            />
+        </>
+        )
+    }
 
-  function getKey(event) {
-    console.log(event.key)
-  }
-  
+    function HandleContent() {
+        if (!willPlay) {
+            return returnMenu();
+        } else {
+            return returnGame()
+        }
+    }
 
-  return (
-    <HandleContent onkeydown={getKey} />
-  )
+    function getKey(event) {
+        console.log(event.key)
+    }
+    
+
+    return (
+        <HandleContent onkeydown={getKey} />
+    )
 }

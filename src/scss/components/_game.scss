@@ -39,6 +39,11 @@
         align-items: end;
     }
 
+    &__name {
+        font-size: 2rem;
+        font-weight: weight(bold);
+    }
+
     
     &__controls {
         align-self: start;
