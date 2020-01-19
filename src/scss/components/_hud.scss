@@ -1,0 +1,28 @@
+.hud {
+    color: $primary-color;
+    font-size: 2rem;
+    height: 10vh;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    position: relative;
+    color: $text-color;
+    font-weight: weight(bold);
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    
+    &__start {
+        padding: 1rem;
+    }
+
+    &__count {
+        padding: 1rem;
+        justify-self: center;
+    }
+
+    .hidden {
+        display: none;
+        background: none !important;
+    }
+}

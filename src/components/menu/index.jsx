@@ -16,6 +16,7 @@ function Menu({ setPlay, willPlay }) {
     }
 
     return (
+        <>
         <section className="menu">
             <div className="menu__upper">
                 <span className="upnid"></span>
@@ -35,6 +36,7 @@ function Menu({ setPlay, willPlay }) {
                 <button className="start" onClick={handlePlay.startPlay}>Press Start</button>
             </form>
         </section>
+        </>
     )
 }
 

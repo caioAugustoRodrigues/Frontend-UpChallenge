@@ -8,7 +8,7 @@ export default function App() {
   function returnGame() {
     return (
       <>
-      <Game /> 
+      <Game willPlay={willPlay}/> 
       </>
     )
   }
@@ -26,9 +26,13 @@ export default function App() {
       return returnGame()
     }
   }
+
+  function getKey(event) {
+    console.log(event.key)
+  }
   
 
   return (
-    <HandleContent />
+    <HandleContent onkeydown={getKey} />
   )
 }

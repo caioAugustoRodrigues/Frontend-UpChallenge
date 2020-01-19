@@ -1,7 +1,7 @@
 .carro {
     display: block;
-    height: 150px;
-    width: 160px;
+    height: 110px;
+    width: 120px;
     background: url('../assets/sprites/b-b.png') no-repeat 0 0;
     background-size: cover;
     justify-self: center;
@@ -9,8 +9,8 @@
     
     &__r {
         display: block;
-        height: 150px;
-        width: 200px;
+        height: 110px;
+        width: 160px;
         background: url('../assets/sprites/b-rq.png') no-repeat 0 0;
         background-size: cover;
         justify-self: flex-end;
@@ -19,8 +19,8 @@
     
     &__l {
         display: block;
-        height: 150px;
-        width: 200px;
+        height: 110px;
+        width: 160px;
         position: relative;
         left: -1rem;
         background: url('../assets/sprites/b-lq.png') no-repeat 0 0;

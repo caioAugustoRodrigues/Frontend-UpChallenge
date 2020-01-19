@@ -1,46 +1,107 @@
-import React, {  useState } from "react";
+import React, {  useState, useEffect } from "react";
 
-export default function HudUpper({ isPlaying, setPlaying, handleChange }) {
-  const [countDown, setCoundDown] = useState(30); 
-  const [isCounting, setIsCounting] = useState(false);
+export default function HudUpper({ isPlaying, setPlaying, handleChange, start, setStart }) {
+  const [countDown, setCountdown] = useState(); 
+  const [startCount, setStartCount] = useState();
 
-  function handleTimer() {
-    if (!isCounting && !isPlaying) {
-      setTimeout(() => {
-        setCoundDown(3);
-        setIsCounting(true)
-  
-        setTimeout(() => {
-          setCoundDown(2);
+    useEffect(() => {
+        if (start === true) {
+            handleTimer();
+            setStart(false);
+        }
+    })
 
-          setTimeout(() => {
-            setCoundDown(1);
-
+    function handleTimer() {
+        if (isPlaying === false) {  
             setTimeout(() => {
-              setPlaying(true);
-              handleChange();
-              setIsCounting(false);
-              setCoundDown(30);
-            }, 1000);
-          }, 1000);
+                setStartCount(3);
+        
+                setTimeout(() => {
+                    setStartCount(2);
+
+                    setTimeout(() => {
+                        setStartCount(1);
+
+                            setTimeout(() => {
+                                setStartCount(0);
+                                handleChange();
+                                setPlaying(true);
+                                setCountdown(20);;
+                                timer(20);
+                            }, 1000);
+                    }, 1000);
+                }, 1000);
+            }, 1000)
+        } 
+    }
+
+    let countdown;
+    let count = countDown;
+    function timer(seconds) {
+        // clear any existing timers
+        clearInterval(countdown);
+
+        const now = Date.now();
+        const then = now + seconds * 1000;
+        let secondsRemaining = 0;
+
+        const handlers = {
+            count: () => {
+                if(secondsRemaining <= 0) {
+                    setPlaying(false);
+                    clearInterval(countdown);
+                    showMenu();
+                    return;
+                }
+            },
+            play: () => {
+                if (isPlaying === false) {
+                    return;
+                }
+            }
+        }
+
+        function showMenu() {
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000);
+        }
+
+        
+        countdown = setInterval(() => {
+            console.log(isPlaying);
+            const secondsLeft = Math.round((then - Date.now()) / 1000);
+            secondsRemaining = secondsLeft; 
+            
+            // check if we should stop it!
+            handlers.count();
+            handlers.play();
+            
+            // display it
+            
+            setCountdown(secondsLeft);
         }, 1000);
-      }, 1000)
-    } 
-  }
+    }
 
+    function StartCounter() {
+        if (startCount > 0) {
+            return startCount
+        } 
+        else {
+            return ''
+        }
+    }
 
-
-  function hideBtnGo() {
-    if (isPlaying || isCounting) {
-      return '-hide'
-    } 
-    return ''
-  }
-
-  return (
-    <>
-    <h1 className="hud__time-left">{countDown}</h1>
-    <button className={`go${hideBtnGo()}`} onClick={handleTimer}>Go</button>
-    </>
-  )
+    return (
+        <>
+            <div className="hud">
+            <h1 className={`hud__start ${startCount < 0 ? 'hidden' : ''}`}>
+                <StartCounter />
+            </h1>
+            <h1 className={`hud__count ${startCount > 0 ? 'hidden' : ''}`}>
+                {count}
+            </h1>
+            </div>
+        </>
+    )
 }

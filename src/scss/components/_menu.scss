@@ -3,17 +3,15 @@
     justify-content: center;
     align-items: center;
     background: rgb(2,0,36);
-    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
     background-size: cover;
+    overflow: hidden;
     height: 100vh;
     width: 100vw;
     color: $text-color;
-    padding: 2rem;
     grid-template-areas: 
     ". upnid ."
     ". title ."
     ". name ."
-    ". . ."
     ;
 
     &__upper {
@@ -21,12 +19,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: space-around;
         text-align: center;
-
-        p {
-            margin-left: 25%;
-            margin-top: 1.15rem;
-        }
         .upnid {
             justify-self: center;
             display: block;
@@ -48,7 +42,7 @@
 
     &__title {
         grid-area: title;
-        font-size: 4rem;
+        font-size: 3rem;
         font-weight: weight(bolder);
         align-self: flex-start;
         justify-self: center;
@@ -56,9 +50,9 @@
 
         animation: str 2s alternate;
         @keyframes str {
-            0% { font-size: 3.7rem; }
-            50% { font-size: 3.7rem; }
-            100% { font-size: 4rem; }
+            0% { font-size: 2.7rem; }
+            50% { font-size: 2.7rem; }
+            100% { font-size: 3rem; }
         }
 
         span {
@@ -68,22 +62,21 @@
 
     &__name {
         grid-area: name;
-        height: 25vh;
         justify-self: center;
         display: flex;
-        flex-flow: column;
-        align-content: center;
-        align-items: center;
-        justify-content: space-between;
+        padding: 1rem;
+        flex-direction: column;
+        justify-items: start;
         text-align: center;
 
         h2 {
             font-size: 1.15rem;
             font-weight: weight(medium);
-            margin-bottom: 0.5rem;
         }
 
         input {
+            margin: 1rem;
+            width: 50vw;
             border-radius: 5px;
             background: none;
             padding: 8px;
@@ -92,7 +85,7 @@
             text-transform: uppercase;
             font-weight: weight(bolder);
             color: $text-color;
-            font-size: 2rem;
+            font-size: 1.5rem;
 
         }
     }
@@ -100,7 +93,7 @@
     .start {
         background: none;
         border: none;
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight: weight(bold);
         color: $text-color;
         justify-self: center;
